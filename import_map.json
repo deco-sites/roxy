@@ -1,5 +1,7 @@
 {
   "imports": {
+    "deco-sites/roxy/": "./",
+
     "deco-sites/storefront/": "./",
     "$store/": "./",
     "apps/": "https://denopkg.com/deco-cx/apps@0.2.14/",
