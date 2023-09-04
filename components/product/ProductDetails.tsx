@@ -79,17 +79,13 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
 
   return (
     <>
-      {/* Breadcrumb */}
-      <Breadcrumb
-        itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
-      />
       {/* Code and name */}
       <div class="mt-4 sm:mt-8">
-        <div>
+        {/* <div>
           <span class="text-sm text-base-300">
             Cod. {gtin}
           </span>
-        </div>
+        </div> */}
         <h1>
           <span class="font-medium text-xl">{name}</span>
         </h1>
@@ -127,11 +123,11 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
                     discount={discount}
                     seller={seller}
                   />
-                  <WishlistButton
+                  {/* <WishlistButton
                     variant="full"
                     productID={productID}
                     productGroupID={productGroupID}
-                  />
+                  /> */}
                 </>
               )}
               {platform === "vnda" && (
@@ -158,7 +154,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
           : <OutOfStock productID={productID} />}
       </div>
       {/* Shipping Simulation */}
-      <div class="mt-8">
+      {/* <div class="mt-8">
         {platform === "vtex" && (
           <ShippingSimulation
             items={[{
@@ -168,18 +164,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
             }]}
           />
         )}
-      </div>
-      {/* Description card */}
-      <div class="mt-4 sm:mt-6">
-        <span class="text-sm">
-          {description && (
-            <details>
-              <summary class="cursor-pointer">Descrição</summary>
-              <div class="ml-2 mt-2">{description}</div>
-            </details>
-          )}
-        </span>
-      </div>
+      </div> */}
       {/* Analytics Event */}
       <SendEventOnLoad
         event={{
@@ -279,7 +264,13 @@ function Details({
    */
   if (variant === "slider") {
     return (
-      <>
+      <div class="flex flex-col">
+          {/* Breadcrumb */}
+          <div class="py-4">
+            <Breadcrumb
+              itemListElement={page?.breadcrumbList?.itemListElement.slice(0, -1)}
+            />
+          </div>
         <div
           id={id}
           class="grid grid-cols-1 gap-4 sm:grid-cols-[max-content_40vw_40vw] sm:grid-rows-1 sm:justify-center"
@@ -355,7 +346,18 @@ function Details({
           </div>
         </div>
         <SliderJS rootId={id}></SliderJS>
-      </>
+        {/* Description card */}
+        <div class="mt-4 sm:mt-6 mx-4">
+          <span class="text-sm">
+            {page?.product?.description && (
+              <details>
+                <summary class="cursor-pointer">Descrição</summary>
+                <div class="ml-2 mt-2">{page?.product?.description}</div>
+              </details>
+            )}
+          </span>
+        </div>
+      </div>
     );
   }
 
