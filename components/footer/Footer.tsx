@@ -29,6 +29,8 @@ export interface SocialItem {
     | "Instagram"
     | "Linkedin"
     | "Tiktok"
+    | "Spotify"
+    | "Youtube"
     | "Twitter";
   link: string;
 }
