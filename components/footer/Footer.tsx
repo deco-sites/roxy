@@ -68,7 +68,8 @@ export interface Layout {
     | "Variation 2"
     | "Variation 3"
     | "Variation 4"
-    | "Variation 5";
+    | "Variation 5"
+    | "Variation 6";
   hide?: {
     logo?: boolean;
     newsletter?: boolean;
@@ -334,6 +335,29 @@ function Footer({
             <Divider />
             <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10 md:items-center">
               <PoweredByDeco />
+              <div class="flex flex-col md:flex-row gap-10 md:items-center">
+                {_links}
+                {_region}
+              </div>
+            </div>
+          </div>
+        )}
+        {layout?.variation == "Variation 6" && (
+          <div class="flex flex-col gap-10">
+            {_newsletter}
+            {layout?.hide?.newsletter ? <></> : <Divider />}
+            <div class="flex flex-col md:flex-row gap-10 lg:gap-20 md:justify-between">
+              {_sectionLinks}
+              <div class="flex flex-col gap-10 md:w-2/5 lg:pl-10">
+                {_payments}
+                {_social}
+                {_apps}
+              </div>
+            </div>
+            <Divider />
+            <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10 md:items-center">
+              <PoweredByDeco />
+              {_logo}
               <div class="flex flex-col md:flex-row gap-10 md:items-center">
                 {_links}
                 {_region}

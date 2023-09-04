@@ -1,4 +1,6 @@
 import Header from "$store/components/ui/SectionHeader.tsx";
+import { Picture, Source } from "apps/website/components/Picture.tsx";
+import type { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Form {
   placeholder?: string;
@@ -17,9 +19,10 @@ export interface Props {
     content?: {
       border?: boolean;
       alignment?: "Center" | "Left" | "Side to side";
-      bgColor?: "Normal" | "Reverse";
+      bg?: "Normal" | "Reverse" | "Image";
     };
   };
+  imageBg?: ImageWidget
 }
 
 const DEFAULT_PROPS: Props = {
@@ -38,11 +41,13 @@ const DEFAULT_PROPS: Props = {
       alignment: "Center",
     },
   },
+  imageBg: ""
 };
 
 export default function Newsletter(props: Props) {
-  const { title, description, form, layout } = { ...DEFAULT_PROPS, ...props };
-  const isReverse = layout?.content?.bgColor === "Reverse";
+  const { title, description, form, layout, imageBg } = { ...DEFAULT_PROPS, ...props };
+  const bgColorLayout = layout?.content?.bg;
+  const isReverse = bgColorLayout === "Reverse";
   const bordered = Boolean(layout?.content?.border);
 
   const headerLayout = (
@@ -56,10 +61,10 @@ export default function Newsletter(props: Props) {
   );
 
   const formLayout = form && (
-    <form action="/" class="flex flex-col gap-4">
+    <form action="/" class="flex flex-col gap-4 w-full">
       <div class="flex flex-col lg:flex-row gap-3">
         <input
-          class="input input-bordered lg:w-80"
+          class="input input-bordered w-full lg:w-80"
           type="text"
           placeholder={form.placeholder}
         />
@@ -87,9 +92,10 @@ export default function Newsletter(props: Props) {
     <div
       class={`${
         bordered
-          ? isReverse ? "bg-secondary-content" : "bg-secondary"
+          ? isReverse ? "bg-secondary-content" : "bg-secondary bg-no-repeat bg-cover"
           : bgLayout
       } ${bordered ? "p-4 lg:p-16" : "p-0"}`}
+      style={bgColorLayout === "Image" && imageBg && { backgroundImage: `url(${imageBg})` }}
     >
       {(!layout?.content?.alignment ||
         layout?.content?.alignment === "Center") && (
