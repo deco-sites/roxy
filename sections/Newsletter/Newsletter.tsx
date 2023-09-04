@@ -64,7 +64,7 @@ export default function Newsletter(props: Props) {
     <form action="/" class="flex flex-col gap-4 w-full">
       <div class="flex flex-col lg:flex-row gap-3">
         <input
-          class="input input-bordered w-full lg:w-80"
+          class="input input-bordered w-full"
           type="text"
           placeholder={form.placeholder}
         />
@@ -92,9 +92,9 @@ export default function Newsletter(props: Props) {
     <div
       class={`${
         bordered
-          ? isReverse ? "bg-secondary-content" : "bg-secondary bg-no-repeat bg-cover"
+          ? isReverse ? "bg-secondary-content" : "bg-secondary"
           : bgLayout
-      } ${bordered ? "p-4 lg:p-16" : "p-0"}`}
+      } ${bordered ? "p-4 lg:p-16" : "p-0"} bg-no-repeat bg-cover bg-center`}
       style={bgColorLayout === "Image" && imageBg && { backgroundImage: `url(${imageBg})` }}
     >
       {(!layout?.content?.alignment ||

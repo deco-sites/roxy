@@ -54,8 +54,8 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 200;
-const HEIGHT = 279;
+const WIDTH = 78;
+const HEIGHT = 108.5;
 
 function ProductCard(
   { product, preload, itemListName, layout, platform }: Props,
@@ -134,7 +134,7 @@ function ProductCard(
         style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
         {/* Wishlist button */}
-        <div
+        {/* <div
           class={`absolute top-2 z-10
           ${
             l?.elementsPositions?.favoriteIcon === "Top left"
@@ -154,7 +154,7 @@ function ProductCard(
               productID={productID}
             />
           )}
-        </div>
+        </div> */}
         {/* Product Images */}
         <a
           href={url && relative(url)}
@@ -215,7 +215,7 @@ function ProductCard(
           <>
             {l?.hide?.skuSelector ? "" : (
               <ul
-                class={`flex items-center gap-2 w-full overflow-auto p-3 ${
+                class={`flex items-center gap-2 w-full overflow-auto p-3 min-h-[56px] ${
                   align === "center" ? "justify-center" : "justify-start"
                 } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
               >
@@ -248,29 +248,35 @@ function ProductCard(
         {l?.hide?.allPrices ? "" : (
           <div class="flex flex-col gap-2">
             <div
-              class={`flex flex-col gap-0 ${
+              class={`flex gap-0 flex-row ${
                 l?.basics?.oldPriceSize === "Normal"
-                  ? "lg:flex-row lg:gap-2"
+                  ? "md:flex-row lg:gap-2"
                   : ""
-              } ${align === "center" ? "justify-center" : "justify-start"}`}
+              } ${align === "center" ? "justify-center items-center" : "justify-start items-center"}`}
             >
               <div
-                class={`line-through text-base-300 text-xs ${
+                class={`line-through text-[#777] text-xs pr-2 ${
                   l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
                 }`}
               >
                 {formatPrice(listPrice, offers!.priceCurrency!)}
               </div>
-              <div class="text-accent text-base lg:text-xl">
+              <div class="text-[#777] text-base lg:text-xl">
                 {formatPrice(price, offers!.priceCurrency!)}
               </div>
             </div>
             {l?.hide?.installments
               ? ""
               : (
-                <div class="text-base-300 text-sm lg:text-base">
-                  ou {installments}
-                </div>
+                <>
+                  <div class="text-[#777] text-sm lg:text-base font-bold">
+                    {installments}
+                  </div>
+                  <div>
+                    à vista com <span class="font-bold">5%</span>{" "}
+                    de desconto no boleto
+                  </div>
+                </>
               )}
           </div>
         )}
@@ -289,6 +295,19 @@ function ProductCard(
             )}
           </>
         )}
+
+        {listPrice && price && listPrice > price
+          ? (
+            <div class="w-full flex justify-center">
+              <div class=" text-[#444] bg-[#eee] px-2 h-[20px] text-xs font-bold">
+                {`-${
+                  (100 - (100 / (listPrice as number / price as number)))
+                    .toFixed(0)
+                }% OFF`}
+              </div>
+            </div>
+          )
+          : ""}
 
         {!l?.hide?.cta
           ? (

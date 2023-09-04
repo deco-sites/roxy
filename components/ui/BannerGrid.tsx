@@ -1,5 +1,6 @@
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import Button from "$store/components/ui/Button.tsx";
 
 /**
  * @titleBy alt
@@ -15,6 +16,8 @@ export interface Banner {
    * @description When you click you go to
    */
   href: string;
+  text?: string;
+  cta?: string;
 }
 
 export type BorderRadius =
@@ -48,6 +51,9 @@ export interface Props {
     desktop?: BorderRadius;
   };
   banners: Banner[];
+  layout: {
+    alignmentText: "Top" | "Bottom"
+  }
 }
 
 const MOBILE_COLUMNS = {
@@ -90,6 +96,7 @@ export default function BannnerGrid({
   itemsPerLine,
   borderRadius,
   banners = [],
+  layout: { alignmentText },
 }: Props) {
   return (
     <section class="container w-full px-4 md:px-0 mx-auto">
@@ -108,13 +115,19 @@ export default function BannnerGrid({
           MOBILE_COLUMNS[itemsPerLine?.mobile ?? 2]
         } ${DESKTOP_COLUMNS[itemsPerLine?.desktop ?? 4]}`}
       >
-        {banners.map(({ href, srcMobile, srcDesktop, alt }) => (
+        {banners.map(({ href, srcMobile, srcDesktop, alt, text, cta }) => (
           <a
             href={href}
             class={`overflow-hidden ${
               RADIUS_MOBILE[borderRadius.mobile ?? "none"]
             } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
           >
+            { alignmentText === "Top" && (
+              <div class="flex flex-col justify-center">
+                {text && <p class="text-[#181812] text-base">{text}</p>}
+                {cta && <Button>{cta}</Button>}
+              </div>
+            ) }
             <Picture>
               <Source
                 media="(max-width: 767px)"
@@ -137,6 +150,12 @@ export default function BannnerGrid({
                 loading="lazy"
               />
             </Picture>
+            { alignmentText === "Bottom" && (
+              <div class="flex flex-col justify-center">
+                {text && <p class="text-[#181812] text-base">{text}</p>}
+                {cta && <Button>{cta}</Button>}
+              </div>
+            ) }
           </a>
         ))}
       </div>

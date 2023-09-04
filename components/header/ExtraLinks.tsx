@@ -10,7 +10,7 @@ interface ExtraLinksProps {
 
 export default function ExtraLinks({ extraLinks }: { extraLinks?: ExtraLinksProps }) {
   return (
-    <section class="lg:container py-2 md:px-4 px-2">
+    <section class="hidden md:block lg:container py-2 md:px-4 px-2">
       <div class="flex justify-between">
         <div class="flex justify-between">{ extraLinks?.left && extraLinks.left.map(({ text, href }: extraLinkItem) => (
           <a href={href}>
