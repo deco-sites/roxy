@@ -123,8 +123,18 @@ export default function BannnerGrid({
             } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
           >
             { alignmentText === "Top" && (
-              <div class="flex flex-col justify-center">
-                {text && <p class="text-[#181812] text-base">{text}</p>}
+              <div class="flex flex-col justify-center items-center">
+                {text && (
+                  <div class="py-4 text-[#181812] text-base font-medium overflow-hidden">
+                    <p>
+                      {text}
+                    </p>
+                    <div>
+                      <span class="inline-block h-[1px] w-[51%] bg-black absolute top-[98%] -translate-x-full hover:translate-x-0 transition-transform delay-[6000ms]" />
+                      <span class="inline-block h-[1px] w-[51%] bg-black absolute top-[98%] -translate-x-full hover:translate-x-0 transition-transform delay-[6000ms]" />
+                    </div>
+                  </div>
+                )}
                 {cta && <Button>{cta}</Button>}
               </div>
             ) }
@@ -151,8 +161,18 @@ export default function BannnerGrid({
               />
             </Picture>
             { alignmentText === "Bottom" && (
-              <div class="flex flex-col justify-center">
-                {text && <p class="text-[#181812] text-base">{text}</p>}
+              <div class="flex flex-col justify-center items-center">
+                {text && (
+                  <div class="relative py-4 mb-8 text-[#181812] text-base font-medium">
+                  <p>
+                    {text}
+                  </p>
+                  <div>
+                    <div class="inline-block absolute top-[96%] left-0 h-[1px] w-[51%] bg-black -translate-x-full hover:translate-x-0 transition-transform delay-1000" />
+                    <div class="inline-block absolute top-[96%] right-0 h-[1px] w-[51%] bg-black translate-x-full hover:translate-x-0 transition-transform delay-1000" />
+                  </div>
+                </div>
+                )}
                 {cta && <Button>{cta}</Button>}
               </div>
             ) }
