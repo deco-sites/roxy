@@ -103,6 +103,10 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         <span class="text-sm text-base-300">
           {installments}
         </span>
+        <div>
+          à vista com 5%
+          de desconto no boleto
+        </div>
       </div>
       {/* Sku Selector */}
       <div class="mt-4 sm:mt-6">
