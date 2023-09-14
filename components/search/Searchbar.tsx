@@ -115,7 +115,7 @@ function Searchbar({
         >
           <Icon id="XMark" size={36} strokeWidth={2} />
         </Button>
-        <div class={`${hasProducts ? "absolute flex" : "hidden"} absolute bottom-3 w-[98%] flex justify-center`}>
+        <div class={`${hasProducts ? "absolute flex" : "hidden"} absolute bottom-[10px] w-[98%] flex justify-center`}>
           <Button type="submit" class="bg-black py-4 text-white">VER TUDO</Button>
         </div>
       </form>
@@ -155,9 +155,10 @@ function Searchbar({
                       <a href={`/s?q=${term}`} class="flex gap-4 items-center">
                         <span>
                           <Icon
-                            id="MagnifyingGlass"
-                            size={24}
-                            strokeWidth={0.01}
+                            class="text-black"
+                            size={20}
+                            id="ChevronRight"
+                            strokeWidth={3}
                           />
                         </span>
                         <span>
