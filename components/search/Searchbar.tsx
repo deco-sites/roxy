@@ -9,10 +9,9 @@
  * no JavaScript is shipped to the browser!
  */
 
-import ProductCard from "$store/components/product/ProductCard.tsx";
+import ProductCardRow from "$store/components/product/ProductCardRow.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
-import Slider from "$store/components/ui/Slider.tsx";
 import Spinner from "$store/components/ui/Spinner.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useId } from "$store/sdk/useId.ts";
@@ -71,13 +70,13 @@ function Searchbar({
 
   return (
     <div
-      class="w-screen grid gap-8 container px-4 py-6 overflow-y-hidden"
+      class="w-screen grid gap-8 container px-4 py-6 overflow-y-hidden relative"
       style={{ gridTemplateRows: "min-content auto" }}
     >
       <form id={id} action={action} class="join">
         <Button
           type="submit"
-          class="join-item btn-square"
+          class="join-item btn-square bg-transparent border-none"
           aria-label="Search"
           for={id}
           tabIndex={-1}
@@ -89,7 +88,7 @@ function Searchbar({
         <input
           ref={searchInputRef}
           id="search-input"
-          class="input input-bordered join-item flex-grow"
+          class="input flex-grow border-none bg-transparent focus:outline-none"
           name={name}
           defaultValue={query}
           onInput={(e) => {
@@ -114,8 +113,11 @@ function Searchbar({
           class="btn-ghost btn-square hidden sm:inline-flex"
           onClick={() => displaySearchPopup.value = false}
         >
-          <Icon id="XMark" size={24} strokeWidth={2} />
+          <Icon id="XMark" size={36} strokeWidth={2} />
         </Button>
+        <div class={`${hasProducts ? "absolute flex" : "hidden"} absolute bottom-3 w-[98%] flex justify-center`}>
+          <Button type="submit" class="bg-black py-4 text-white">VER TUDO</Button>
+        </div>
       </form>
 
       {notFound
@@ -145,7 +147,7 @@ function Searchbar({
                   role="heading"
                   aria-level={3}
                 >
-                  Sugestões
+                  MAIS VENDIDOS
                 </span>
                 <ul id="search-suggestion" class="flex flex-col gap-6">
                   {searches.map(({ term }) => (
@@ -176,22 +178,19 @@ function Searchbar({
                   role="heading"
                   aria-level={3}
                 >
-                  Produtos sugeridos
+                  PRODUTOS
                 </span>
-                <Slider class="carousel">
+                <div class="flex flex-row flex-wrap pb-8">
                   {products.map((product, index) => (
-                    <Slider.Item
-                      index={index}
-                      class="carousel-item first:ml-4 last:mr-4 min-w-[200px] max-w-[200px]"
-                    >
-                      <ProductCard product={product} platform={"vtex"} />
-                    </Slider.Item>
+                    <div class="max-w-[370px]">
+                      <ProductCardRow product={product} />
+                    </div>
                   ))}
-                </Slider>
+                </div>
               </div>
             </div>
           </div>
-        )}
+          )}
     </div>
   );
 }

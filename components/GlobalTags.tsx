@@ -11,6 +11,10 @@ function GlobalTags() {
 
       {/* Web Manifest */}
       <link rel="manifest" href={asset("/site.webmanifest")} />
+
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link href="https://fonts.googleapis.com/css2?Poppins:ital,wght@0,100;0,200;0,300;0,400;1,400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
     </Head>
   );
 }

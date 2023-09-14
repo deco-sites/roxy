@@ -17,18 +17,21 @@ function Searchbar({ searchbar }: Props) {
   const open = displaySearchPopup.value;
 
   return (
-    <div
-      class={`${
-        open ? "block border-y border-base-200 shadow" : "hidden"
-      } absolute left-0 top-0 w-screen z-50 bg-base-100`}
-      style={{ marginTop: headerHeight }}
-    >
-      {open && (
-        <Suspense fallback={<span class="loading loading-ring" />}>
-          <LazySearchbar {...searchbar} />
-        </Suspense>
-      )}
-    </div>
+    <>
+      <div
+        class={`${
+          open ? "block border-y border-base-200 shadow" : "hidden"
+        } absolute left-0 top-0 w-screen z-[99] bg-base-100`}
+        style={{ marginTop: headerHeight }}
+      >
+        {open && (
+          <Suspense fallback={<span class="loading loading-ring" />}>
+            <LazySearchbar {...searchbar} />
+          </Suspense>
+        )}
+      </div>
+      <div class={open ? "fixed top-24 left-0 z-[50] h-[100vh] w-[100vw] bg-[rgba(0,0,0,0.4)]" : ""} />
+    </>
   );
 }
 

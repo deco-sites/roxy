@@ -107,6 +107,14 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
           à vista com 5%
           de desconto no boleto
         </div>
+        <div class="w-full flex justify-center">
+          <div class=" text-[#444] bg-[#eee] px-2 h-[20px] text-xs font-bold">
+            {`-${
+              (100 - (100 / (listPrice as number / price as number)))
+                .toFixed(0)
+            }% OFF`}
+          </div>
+        </div>
       </div>
       {/* Sku Selector */}
       <div class="mt-4 sm:mt-6">

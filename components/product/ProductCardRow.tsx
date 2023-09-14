@@ -2,7 +2,6 @@ import { SendEventOnClick } from "$store/components/Analytics.tsx";
 import Avatar from "$store/components/ui/Avatar.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
-import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
@@ -27,7 +26,7 @@ export interface Layout {
     cta?: boolean;
   };
   onMouseOver?: {
-    image?: "Change image" | "Zoom image";
+    image?: "Change image" | "Zoom image" | "Change Detail";
     card?: "None" | "Move up";
     showFavoriteIcon?: boolean;
     showSkuSelector?: boolean;
@@ -44,8 +43,6 @@ interface Props {
   /** @description used for analytics event */
   itemListName?: string;
   layout?: Layout;
-
-  platform: ReturnType<typeof usePlatform>;
 }
 
 const relative = (url: string) => {
@@ -53,12 +50,10 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 78;
-const HEIGHT = 108.5;
+const WIDTH = 100;
+const HEIGHT = 139.5;
 
-function ProductCard(
-  { product, preload, itemListName, layout, platform }: Props,
-) {
+function ProductCardRow({ product, preload, itemListName, layout }: Props) {
   const {
     url,
     productID,
@@ -102,14 +97,13 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`card card-compact group w-full ${
+      class={`card card-compact group w-full flex-row ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
         l?.onMouseOver?.card === "Move up" &&
         "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
-      }
-      `}
+      } rounded-none`}
       data-deco="view-product"
     >
       <SendEventOnClick
@@ -133,7 +127,7 @@ function ProductCard(
         style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
         {/* Wishlist button */}
-        {/* <div
+        <div
           class={`absolute top-2 z-10
           ${
             l?.elementsPositions?.favoriteIcon === "Top left"
@@ -147,18 +141,18 @@ function ProductCard(
           }
         `}
         >
-          {platform === "vtex" && (
-            <WishlistButton
-              productGroupID={productGroupID}
-              productID={productID}
-            />
-          )}
-        </div> */}
+          {
+            /* <WishlistIcon
+            productGroupID={productGroupID}
+            productID={productID}
+          /> */
+          }
+        </div>
         {/* Product Images */}
         <a
           href={url && relative(url)}
           aria-label="view product"
-          class="grid grid-cols-1 grid-rows-1 w-full"
+          class="grid grid-cols-1 grid-rows-1 w-full relative"
         >
           <Image
             src={front.url!}
@@ -175,6 +169,11 @@ function ProductCard(
             loading={preload ? "eager" : "lazy"}
             decoding="async"
           />
+          {(l?.onMouseOver?.image == "Change Detail") && (
+            <p class="absolute bottom-0 w-full h-full flex items-end justify-center translate-y-11 hover:translate-y-0 transition-transform delay-100 font-bold">
+              Ver Detalhes
+            </p>
+          )}
           {(!l?.onMouseOver?.image ||
             l?.onMouseOver?.image == "Change image") && (
             <Image
@@ -188,6 +187,27 @@ function ProductCard(
               decoding="async"
             />
           )}
+          {
+            /* {listPrice && price && listPrice > price
+            ? (
+              <>
+                <div class="absolute top-3 w-full flex justify-center">
+                  <div class=" text-[#202020] text-[11px] bg-[#f0f0f0] font-bold tracking-widest">
+                    {`-${
+                      (100 - (100 / (listPrice as number / price as number)))
+                        .toFixed(0)
+                    }% OFF`}
+                  </div>
+                </div>
+                <div class="absolute left-5 top-10">
+                  <div class="bg-black text-[#f4f4f4] font-bold text-xs py-1 px-4 tracking-widest">
+                    SALE
+                  </div>
+                </div>
+              </>
+            )
+            : ""} */
+          }
         </a>
         <figcaption
           class={`
@@ -209,8 +229,7 @@ function ProductCard(
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col p-2 gap-3 lg:gap-4">
         {/* SKU Selector */}
-        {(!l?.elementsPositions?.skuSelector ||
-          l?.elementsPositions?.skuSelector === "Top") && (
+        {(l?.elementsPositions?.skuSelector === "Top") && (
           <>
             {l?.hide?.skuSelector ? "" : (
               <ul
@@ -224,59 +243,28 @@ function ProductCard(
           </>
         )}
 
-        {l?.hide?.productName && l?.hide?.productDescription
-          ? ""
-          : (
-            <div class="flex flex-col gap-0">
-              {l?.hide?.productName
-                ? ""
-                : (
-                  <h2 class="truncate text-base lg:text-lg text-base-content">
-                    {name}
-                  </h2>
-                )}
-              {l?.hide?.productDescription
-                ? ""
-                : (
-                  <p class="truncate text-sm lg:text-sm text-neutral">
-                    {product.description}
-                  </p>
-                )}
-            </div>
-          )}
+        {l?.hide?.productName ? "" : (
+          <div class="flex flex-col gap-0 w-[200px]">
+            {l?.hide?.productName
+              ? ""
+              : (
+                <h2 class="text-base lg:text-lg text-base-content font-bold bg-white threeLinePhrase">
+                  {name}
+                </h2>
+              )}
+          </div>
+        )}
         {l?.hide?.allPrices ? "" : (
-          <div class="flex flex-col gap-2">
+          <div class="flex flex-col">
             <div
-              class={`flex gap-0 flex-row ${
-                l?.basics?.oldPriceSize === "Normal"
-                  ? "md:flex-row lg:gap-2"
-                  : ""
-              } ${align === "center" ? "justify-center items-center" : "justify-start items-center"}`}
+              class={`flex flex-col ${
+                align === "center" ? "justify-center" : "justify-start"
+              }`}
             >
-              <div
-                class={`line-through text-[#181812] font-thin text-base lg:text-xl pr-2 ${
-                  l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
-                }`}
-              >
-                {formatPrice(listPrice, offers!.priceCurrency!)}
-              </div>
-              <div class="text-[#777] text-base lg:text-xl">
+              <div class="text-[#333333] text-base font-bold">
                 {formatPrice(price, offers!.priceCurrency!)}
               </div>
             </div>
-            {l?.hide?.installments
-              ? ""
-              : (
-                <>
-                  <div class="text-[#777] text-sm lg:text-base font-bold">
-                    {installments}
-                  </div>
-                  <div>
-                    à vista com <span class="font-bold">5%</span>{" "}
-                    de desconto no boleto
-                  </div>
-                </>
-              )}
           </div>
         )}
 
@@ -294,34 +282,9 @@ function ProductCard(
             )}
           </>
         )}
-
-        {listPrice && price && listPrice > price
-          ? (
-            <div class="w-full flex justify-center">
-              <div class=" text-[#444] bg-[#eee] px-2 h-[20px] text-xs font-bold">
-                {`-${
-                  (100 - (100 / (listPrice as number / price as number)))
-                    .toFixed(0)
-                }% OFF`}
-              </div>
-            </div>
-          )
-          : ""}
-
-        {!l?.hide?.cta
-          ? (
-            <div
-              class={`flex-auto flex items-end ${
-                l?.onMouseOver?.showCta ? "lg:hidden" : ""
-              }`}
-            >
-              {cta}
-            </div>
-          )
-          : ""}
       </div>
     </div>
   );
 }
 
-export default ProductCard;
+export default ProductCardRow;
