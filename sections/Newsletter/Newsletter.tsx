@@ -41,7 +41,7 @@ const DEFAULT_PROPS: Props = {
       'Ao se inscrever, você concorda com nossa <a class="link" href="/politica-de-privacidade">Política de privacidade</a>.',
   },
   textAboutUs: {
-    text: "AQUI AQUI AQUI",
+    text: "",
   },
   layout: {
     headerFontSize: "Large",
