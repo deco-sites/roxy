@@ -22,6 +22,16 @@
     overflow: hidden;
     height: 100vh;
   }
+
+  .hiddenMiddleTexto {
+    overflow: hidden; /* remove o estouro do elemento */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* quantidade de linhas */
+    -webkit-box-orient: vertical; /* conteúdo será apresentado verticalmente */
+    @media (max-width: 768px) {
+      -webkit-line-clamp: 4; /* quantidade de linhas */
+    }
+  }
 }
 
 .group:disabled .group-disabled\:animate-progress {

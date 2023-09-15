@@ -1,0 +1,23 @@
+import { useSignal } from "@preact/signals";
+
+export default function TextAboutUs({ text }: { text?: string }) {
+  let isShow = useSignal("false")
+  return (
+    <div class="flex flex-col gap-4 pb-10 pt-4">
+      <div 
+        class={`${isShow.value ? "relative hiddenMiddleTexto" : ""} px-5 my-7`}
+      >
+        <div dangerouslySetInnerHTML={{ __html: text ?? "" }}  />
+        <div class="absolute bottom-0 h-[52px] inline-block w-full left-0" style={{ background: "linear-gradient(180deg,hsla(0,0%,100%,0) 0,#fff)" }} />
+      </div>
+      <div class="flex justify-center">
+        <button 
+          class="bg-transparent border divide-solid border-black rounded-full w-max" 
+          onClick={() => isShow.value = !isShow.value}
+        >
+          <p class="font-bold text-5xl px-2">{isShow.value ? "+" : "-"}</p>
+        </button>
+      </div>
+    </div>
+  )
+}

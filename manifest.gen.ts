@@ -26,7 +26,8 @@ import * as $$$$$$20 from "./sections/Content/Benefits.tsx";
 import * as $$$$$$21 from "./sections/Content/Faq.tsx";
 import * as $$$$$$22 from "./sections/Content/Logos.tsx";
 import * as $$$$$$23 from "./sections/Footer/Footer.tsx";
-import * as $$$$$$24 from "./sections/Newsletter/Newsletter.tsx";
+import * as $$$$$$24 from "./sections/Newsletter/TextAboutUs.tsx";
+import * as $$$$$$25 from "./sections/Newsletter/Newsletter.tsx";
 import * as $$$$$$$$$$$0 from "./apps/site.ts";
 import * as $$$$$$$$$$$1 from "./apps/decohub.ts";
 
@@ -49,7 +50,8 @@ const manifest = {
     "deco-sites/roxy/sections/Links/Shortcuts.tsx": $$$$$$15,
     "deco-sites/roxy/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$0,
     "deco-sites/roxy/sections/Miscellaneous/CookieConsent.tsx": $$$$$$1,
-    "deco-sites/roxy/sections/Newsletter/Newsletter.tsx": $$$$$$24,
+    "deco-sites/roxy/sections/Newsletter/Newsletter.tsx": $$$$$$25,
+    "deco-sites/roxy/sections/Newsletter/TextAboutUs.tsx": $$$$$$24,
     "deco-sites/roxy/sections/Product/ProductDetails.tsx": $$$$$$11,
     "deco-sites/roxy/sections/Product/ProductShelf.tsx": $$$$$$12,
     "deco-sites/roxy/sections/Product/SearchResult.tsx": $$$$$$10,

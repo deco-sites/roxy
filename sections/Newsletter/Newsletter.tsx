@@ -1,6 +1,6 @@
 import Header from "$store/components/ui/SectionHeader.tsx";
-import { Picture, Source } from "apps/website/components/Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import TextAboutUs from "$store/islands/AboutUsNewsletter.tsx";
 
 export interface Form {
   placeholder?: string;
@@ -10,10 +10,17 @@ export interface Form {
 }
 
 export interface Props {
+  imageBg?: ImageWidget
   title?: string;
   /** @format textarea */
   description?: string;
   form?: Form;
+  textAboutUs?: {
+
+    /** @format html */
+    text?: string;
+
+  };
   layout?: {
     headerFontSize?: "Large" | "Normal";
     content?: {
@@ -22,7 +29,6 @@ export interface Props {
       bg?: "Normal" | "Reverse" | "Image";
     };
   };
-  imageBg?: ImageWidget
 }
 
 const DEFAULT_PROPS: Props = {
@@ -33,6 +39,9 @@ const DEFAULT_PROPS: Props = {
     buttonText: "Inscrever",
     helpText:
       'Ao se inscrever, você concorda com nossa <a class="link" href="/politica-de-privacidade">Política de privacidade</a>.',
+  },
+  textAboutUs: {
+    text: "AQUI AQUI AQUI",
   },
   layout: {
     headerFontSize: "Large",
@@ -89,7 +98,8 @@ export default function Newsletter(props: Props) {
     : "bg-transparent";
 
   return (
-    <div
+    <div class="flex flex-col">
+      <div
       class={`${
         bordered
           ? isReverse ? "bg-secondary-content" : "bg-secondary"
@@ -128,6 +138,10 @@ export default function Newsletter(props: Props) {
           </div>
         </div>
       )}
+    </div>
+      <div>
+        {props.textAboutUs && <TextAboutUs {...props.textAboutUs} />}
+      </div>
     </div>
   );
 }
