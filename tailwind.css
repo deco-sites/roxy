@@ -25,11 +25,9 @@
 
   .hiddenMiddleTexto {
     overflow: hidden; /* remove o estouro do elemento */
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* quantidade de linhas */
-    -webkit-box-orient: vertical; /* conteúdo será apresentado verticalmente */
+    max-height: 76px;
     @media (max-width: 768px) {
-      -webkit-line-clamp: 4; /* quantidade de linhas */
+      max-height: 90px;
     }
   }
 }

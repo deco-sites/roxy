@@ -105,7 +105,7 @@ function ProductCard(
       id={id}
       class={`card card-compact group w-full ${
         align === "center" ? "text-center" : "text-start"
-      } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
+      } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered p-1" : ""}
         ${
         l?.onMouseOver?.card === "Move up" &&
         "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
