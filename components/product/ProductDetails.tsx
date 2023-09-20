@@ -87,33 +87,43 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
           </span>
         </div> */}
         <h1>
-          <span class="font-medium text-xl">{name}</span>
+          <span class="font-semibold text-xl text-[#181812]">{name}</span>
         </h1>
       </div>
       {/* Prices */}
-      <div class="mt-4">
+      <div class="mt-4 gap-4 flex flex-col">
         <div class="flex flex-row gap-2 items-center">
-          <span class="line-through text-base-300 text-xs">
+          <span class="line-through text-[#181812] text-sm font-semibold">
             {formatPrice(listPrice, offers!.priceCurrency!)}
           </span>
-          <span class="font-medium text-xl text-secondary">
+          <span class="font-medium text-base text-[#77777]">
             {formatPrice(price, offers!.priceCurrency!)}
           </span>
         </div>
-        <span class="text-sm text-base-300">
+        <span class="text-sm text-[#181812]">
           {installments}
         </span>
-        <div>
+        <div class="text-[#181812] text-sm">
           à vista com 5%
           de desconto no boleto
         </div>
-        <div class="w-full flex justify-center">
-          <div class=" text-[#444] bg-[#eee] px-2 h-[20px] text-xs font-bold">
+        <div class="w-full flex justify-start pt-4">
+          <div class=" text-[#444] bg-[#eee] px-2 h-[20px] text-xs font-bold mr-2">
             {`-${
               (100 - (100 / (listPrice as number / price as number)))
                 .toFixed(0)
-            }% OFF`}
+              }% OFF`}
           </div>
+          { listPrice && price && listPrice > price ? (
+            <div class="bg-[#ff8b24] h-6 w-16 text-white font-semibold text-center tracking-widest">SALE</div>
+          ) : (
+          <Image 
+            src="https://d2e5mvjndnxyoo.cloudfront.net/Custom/Content/Flags/0039_flag_637507107698720811.png?p="
+            alt="Tag New Product"
+            width={10}
+            height={10}
+          />
+          ) }
         </div>
       </div>
       {/* Sku Selector */}
@@ -135,11 +145,11 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
                     discount={discount}
                     seller={seller}
                   />
-                  {/* <WishlistButton
+                  <WishlistButton
                     variant="full"
                     productID={productID}
                     productGroupID={productGroupID}
-                  /> */}
+                  />
                 </>
               )}
               {platform === "vnda" && (
@@ -280,6 +290,7 @@ function Details({
           {/* Breadcrumb */}
           <div class="py-4">
             <Breadcrumb
+
               itemListElement={page?.breadcrumbList?.itemListElement.slice(0, -1)}
             />
           </div>

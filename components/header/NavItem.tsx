@@ -12,7 +12,7 @@ function NavItem({ item }: { item: INavItem }) {
   const { href, label, children, image } = item;
 
   return (
-    <li class="group flex items-center">
+    <li class="group flex items-center last:text-[#FA0505]">
       <a href={href} class="px-4 py-3">
         <span class="group-hover:underline hover:pb-2 hover:text-[#777777] text-sm uppercase font-semibold">
           {label}
@@ -22,7 +22,7 @@ function NavItem({ item }: { item: INavItem }) {
       {children && children.length > 0 &&
         (
           <div
-            class="fixed hidden hover:flex group-hover:flex z-50 items-start justify-center gap-6 border-t border-b-2 border-base-200 w-screen h-full bg-[rgba(0,0,0,0.4)]"
+            class="fixed hidden hover:flex group-hover:flex z-50 items-start justify-center gap-6 border-t border-b-2 border-base-200 w-screen h-full bg-[rgba(0,0,0,0.4)] text-[#333333]"
             style={{ top: "0px", left: "0px", marginTop: headerHeight }}
           >
             <div class="bg-base-100 w-full shadow">

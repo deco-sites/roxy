@@ -61,7 +61,7 @@ function WishlistButton({
         strokeWidth={2}
         fill={inWishlist ? "black" : "none"}
       />
-      {variant === "icon" ? null : inWishlist ? "Remover" : "Favoritar"}
+      {variant === "icon" ? null : inWishlist ? "REMOVER DA LISTA DE DESEJOS" : "ADICIONAR Á LISTA DE DESEJOS"}
     </Button>
   );
 }

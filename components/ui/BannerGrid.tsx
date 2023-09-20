@@ -99,7 +99,7 @@ export default function BannnerGrid({
   layout: { alignmentText },
 }: Props) {
   return (
-    <section class="container w-full px-4 md:px-0 mx-auto py-5 md:py-6">
+    <section class="xl:container w-full px-4 md:px-6 lg:md:px-8 mx-auto py-5 md:py-6">
       {title &&
         (
           <div class="py-6 md:py-0 md:pb-[40px] flex items-center mt-6">
