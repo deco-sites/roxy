@@ -98,7 +98,7 @@ export default function Newsletter(props: Props) {
     : "bg-transparent";
 
   return (
-    <div class="flex flex-col">
+    <div class="flex flex-col pt-5">
       <div
       class={`${
         bordered
