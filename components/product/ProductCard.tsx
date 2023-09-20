@@ -33,6 +33,7 @@ export interface Layout {
     showSkuSelector?: boolean;
     showCardShadow?: boolean;
     showCta?: boolean;
+    showQuickView?: boolean
   };
 }
 
@@ -165,7 +166,7 @@ function ProductCard(
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded w-full ${
+            class={`bg-base-100 col-span-full row-span-full rounded w-full hover:relative ${
               l?.onMouseOver?.image == "Zoom image"
                 ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                 : ""
@@ -204,10 +205,27 @@ function ProductCard(
             </ul>
           )}
           {l?.onMouseOver?.showCta && cta}
+          {l?.onMouseOver?.showQuickView && (
+            <p class="text-[#777777]">QUICK VIEW</p>
+          )}
         </figcaption>
       </figure>
+      {/* Tags */}
+      <div class="flex flex-row justify-between py-2">
+        <p>1 COR</p>
+        { listPrice && price && listPrice > price ? (
+          <div class="bg-[#ff8b24] h-6 w-16 text-white font-semibold text-center tracking-widest">SALE</div>
+        ) : (
+        <Image 
+          src="https://d2e5mvjndnxyoo.cloudfront.net/Custom/Content/Flags/0039_flag_637507107698720811.png?p="
+          alt="Tag New Product"
+          width={10}
+          height={10}
+        />
+        ) }
+      </div>
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col p-2 gap-3 lg:gap-4">
+      <div class="flex-auto flex flex-col p-2 gap-3 lg:gap-4 border-t divide-solid border-[#77777]">
         {/* SKU Selector */}
         {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
@@ -260,7 +278,7 @@ function ProductCard(
               >
                 {formatPrice(listPrice, offers!.priceCurrency!)}
               </div>
-              <div class="text-[#777] text-base lg:text-xl">
+              <div class="text-[#777777] text-base lg:text-xl">
                 {formatPrice(price, offers!.priceCurrency!)}
               </div>
             </div>
@@ -268,11 +286,11 @@ function ProductCard(
               ? ""
               : (
                 <>
-                  <div class="text-[#777] text-sm lg:text-base font-bold">
+                  <div class="text-[#777777] text-sm lg:text-base font-bold">
                     {installments}
                   </div>
-                  <div>
-                    à vista com <span class="font-bold">5%</span>{" "}
+                  <div class="text-[#181812]">
+                    à vista com 5%
                     de desconto no boleto
                   </div>
                 </>

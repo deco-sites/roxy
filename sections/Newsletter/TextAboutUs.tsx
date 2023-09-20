@@ -1,6 +1,11 @@
 import { useSignal } from "@preact/signals";
 
-export default function TextAboutUs({ text }: { text?: string }) {
+export interface Props {
+  /** @format html */
+  text?: string
+}
+
+export default function TextAboutUs({ text }: Props) {
   let isShow = useSignal("false")
   return (
     <div class="flex flex-col gap-4 pb-10 pt-4">
@@ -15,7 +20,7 @@ export default function TextAboutUs({ text }: { text?: string }) {
           class="bg-transparent border divide-solid border-black rounded-full w-max" 
           onClick={() => isShow.value = !isShow.value}
         >
-          <p class="font-bold text-5xl px-2">{isShow.value ? "+" : "-"}</p>
+          <p class="font-bold text-5xl px-[9px]">{isShow.value ? "+" : "-"}</p>
         </button>
       </div>
     </div>

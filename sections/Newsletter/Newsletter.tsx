@@ -9,18 +9,18 @@ export interface Form {
   helpText?: string;
 }
 
+export interface TextAboutUsProps {
+  /** @format html */
+  text: string;
+}
+
 export interface Props {
   imageBg?: ImageWidget
   title?: string;
   /** @format textarea */
   description?: string;
   form?: Form;
-  textAboutUs?: {
-
-    /** @format html */
-    text?: string;
-
-  };
+  textAboutUs?: TextAboutUsProps;
   layout?: {
     headerFontSize?: "Large" | "Normal";
     content?: {

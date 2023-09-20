@@ -163,14 +163,10 @@ export default function BannnerGrid({
             { alignmentText === "Bottom" && (
               <div class="flex flex-col justify-center items-center">
                 {text && (
-                  <div class="relative py-4 mb-8 text-[#181812] text-base font-medium">
+                  <div class="relative py-4 mb-8 text-[#181812] text-base font-medium hover:underline">
                   <p>
                     {text}
                   </p>
-                  <div>
-                    <div class="inline-block absolute top-[96%] left-0 h-[1px] w-[51%] bg-black -translate-x-full hover:translate-x-0 transition-transform delay-1000" />
-                    <div class="inline-block absolute top-[96%] right-0 h-[1px] w-[51%] bg-black translate-x-full hover:translate-x-0 transition-transform delay-1000" />
-                  </div>
                 </div>
                 )}
                 {cta && <Button>{cta}</Button>}
