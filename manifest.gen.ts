@@ -18,30 +18,31 @@ import * as $$$$$$12 from "./sections/Product/SearchResult.tsx";
 import * as $$$$$$13 from "./sections/Product/ProductDetails.tsx";
 import * as $$$$$$14 from "./sections/Product/ProductShelf.tsx";
 import * as $$$$$$15 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$16 from "./sections/Links/LinkTree.tsx";
-import * as $$$$$$17 from "./sections/Links/Shortcuts.tsx";
-import * as $$$$$$18 from "./sections/Category/CategoryList.tsx";
-import * as $$$$$$19 from "./sections/Category/CategoryBanner.tsx";
-import * as $$$$$$20 from "./sections/Theme/Theme.tsx";
-import * as $$$$$$21 from "./sections/Content/Testimonials.tsx";
-import * as $$$$$$22 from "./sections/Content/Benefits.tsx";
-import * as $$$$$$23 from "./sections/Content/Faq.tsx";
-import * as $$$$$$24 from "./sections/Content/Logos.tsx";
-import * as $$$$$$25 from "./sections/Footer/Footer.tsx";
-import * as $$$$$$26 from "./sections/Newsletter/TextAboutUs.tsx";
-import * as $$$$$$27 from "./sections/Newsletter/Newsletter.tsx";
+import * as $$$$$$16 from "./sections/Links/LinksMobile.tsx";
+import * as $$$$$$17 from "./sections/Links/LinkTree.tsx";
+import * as $$$$$$18 from "./sections/Links/Shortcuts.tsx";
+import * as $$$$$$19 from "./sections/Category/CategoryList.tsx";
+import * as $$$$$$20 from "./sections/Category/CategoryBanner.tsx";
+import * as $$$$$$21 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$22 from "./sections/Content/Testimonials.tsx";
+import * as $$$$$$23 from "./sections/Content/Benefits.tsx";
+import * as $$$$$$24 from "./sections/Content/Faq.tsx";
+import * as $$$$$$25 from "./sections/Content/Logos.tsx";
+import * as $$$$$$26 from "./sections/Footer/Footer.tsx";
+import * as $$$$$$27 from "./sections/Newsletter/TextAboutUs.tsx";
+import * as $$$$$$28 from "./sections/Newsletter/Newsletter.tsx";
 import * as $$$$$$$$$$$0 from "./apps/site.ts";
 import * as $$$$$$$$$$$1 from "./apps/decohub.ts";
 
 const manifest = {
   "sections": {
-    "deco-sites/roxy/sections/Category/CategoryBanner.tsx": $$$$$$19,
-    "deco-sites/roxy/sections/Category/CategoryList.tsx": $$$$$$18,
-    "deco-sites/roxy/sections/Content/Benefits.tsx": $$$$$$22,
-    "deco-sites/roxy/sections/Content/Faq.tsx": $$$$$$23,
-    "deco-sites/roxy/sections/Content/Logos.tsx": $$$$$$24,
-    "deco-sites/roxy/sections/Content/Testimonials.tsx": $$$$$$21,
-    "deco-sites/roxy/sections/Footer/Footer.tsx": $$$$$$25,
+    "deco-sites/roxy/sections/Category/CategoryBanner.tsx": $$$$$$20,
+    "deco-sites/roxy/sections/Category/CategoryList.tsx": $$$$$$19,
+    "deco-sites/roxy/sections/Content/Benefits.tsx": $$$$$$23,
+    "deco-sites/roxy/sections/Content/Faq.tsx": $$$$$$24,
+    "deco-sites/roxy/sections/Content/Logos.tsx": $$$$$$25,
+    "deco-sites/roxy/sections/Content/Testimonials.tsx": $$$$$$22,
+    "deco-sites/roxy/sections/Footer/Footer.tsx": $$$$$$26,
     "deco-sites/roxy/sections/Header/Header.tsx": $$$$$$11,
     "deco-sites/roxy/sections/Images/Banner.tsx": $$$$$$6,
     "deco-sites/roxy/sections/Images/BannerGrid.tsx": $$$$$$7,
@@ -49,20 +50,21 @@ const manifest = {
     "deco-sites/roxy/sections/Images/Carousel.tsx": $$$$$$9,
     "deco-sites/roxy/sections/Images/ImageGallery.tsx": $$$$$$10,
     "deco-sites/roxy/sections/Images/ShoppableBanner.tsx": $$$$$$5,
-    "deco-sites/roxy/sections/Links/LinkTree.tsx": $$$$$$16,
-    "deco-sites/roxy/sections/Links/Shortcuts.tsx": $$$$$$17,
+    "deco-sites/roxy/sections/Links/LinksMobile.tsx": $$$$$$16,
+    "deco-sites/roxy/sections/Links/LinkTree.tsx": $$$$$$17,
+    "deco-sites/roxy/sections/Links/Shortcuts.tsx": $$$$$$18,
     "deco-sites/roxy/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$0,
     "deco-sites/roxy/sections/Miscellaneous/CookieConsent.tsx": $$$$$$2,
     "deco-sites/roxy/sections/Miscellaneous/SaleBanner.tsx": $$$$$$1,
-    "deco-sites/roxy/sections/Newsletter/Newsletter.tsx": $$$$$$27,
-    "deco-sites/roxy/sections/Newsletter/TextAboutUs.tsx": $$$$$$26,
+    "deco-sites/roxy/sections/Newsletter/Newsletter.tsx": $$$$$$28,
+    "deco-sites/roxy/sections/Newsletter/TextAboutUs.tsx": $$$$$$27,
     "deco-sites/roxy/sections/Product/ProductDetails.tsx": $$$$$$13,
     "deco-sites/roxy/sections/Product/ProductShelf.tsx": $$$$$$14,
     "deco-sites/roxy/sections/Product/SearchResult.tsx": $$$$$$12,
     "deco-sites/roxy/sections/Product/Wishlist.tsx": $$$$$$15,
     "deco-sites/roxy/sections/Social/InstagramPosts.tsx": $$$$$$3,
     "deco-sites/roxy/sections/Social/WhatsApp.tsx": $$$$$$4,
-    "deco-sites/roxy/sections/Theme/Theme.tsx": $$$$$$20,
+    "deco-sites/roxy/sections/Theme/Theme.tsx": $$$$$$21,
   },
   "apps": {
     "deco-sites/roxy/apps/decohub.ts": $$$$$$$$$$$1,
