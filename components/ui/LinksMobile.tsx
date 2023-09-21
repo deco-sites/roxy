@@ -16,13 +16,13 @@ export interface Props {
 export default function LinksMobile({ links = [{text:"Novidades", href:"#"}] }: Props) {
   return (
     <div class="block md:hidden">
-      <div class="flex flex-col">
+      <div class="flex flex-col py-6">
         {links?.map(({ text, href }, index) => (
-          <div key={index} class="py-2 border-y divide-solid">
+          <div key={index} class="py-4 px-3 border-y divide-solid first:font-bold font-semibold last:text-[#FA0505]">
             <a href={href} class="flex justify-between">
-              <span>{text}</span>
+              <span class="text-sm">{text}</span>
               <Icon
-                class="text-base-100"
+                class="text-[#777777]"
                 size={24}
                 id="ChevronRight"
                 strokeWidth={3}
