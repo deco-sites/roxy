@@ -206,7 +206,7 @@ function ProductCard(
           )}
           {l?.onMouseOver?.showCta && cta}
           {l?.onMouseOver?.showQuickView && (
-            <p class="text-[#777777]">QUICK VIEW</p>
+            <p class="text-[#777777] hidden md:block">QUICK VIEW</p>
           )}
         </figcaption>
       </figure>
