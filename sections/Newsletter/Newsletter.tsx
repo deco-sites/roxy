@@ -115,8 +115,8 @@ export default function Newsletter(props: Props) {
           <Source
             media="(max-width: 767px)"
             src={srcMobile}
-            width={80}
-            height={80}
+            width={70}
+            height={70}
           />
           <Source
             media="(min-width: 768px)"

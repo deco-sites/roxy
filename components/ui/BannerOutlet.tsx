@@ -107,8 +107,8 @@ export default function BannerOutlet({
               <Source
                 media="(max-width: 767px)"
                 src={srcMobile}
-                width={128}
-                height={40}
+                width={96}
+                height={30}
               />
               <Source
                 media="(min-width: 768px)"

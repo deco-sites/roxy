@@ -142,8 +142,8 @@ export default function BannnerGrid({
               <Source
                 media="(max-width: 767px)"
                 src={srcMobile}
-                width={80}
-                height={80}
+                width={75}
+                height={75}
               />
               <Source
                 media="(min-width: 768px)"
