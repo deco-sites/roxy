@@ -1,6 +1,7 @@
 import Header from "$store/components/ui/SectionHeader.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import TextAboutUs from "$store/islands/AboutUsNewsletter.tsx";
+import { Picture, Source } from "apps/website/components/Picture.tsx";
 
 export interface Form {
   placeholder?: string;
@@ -15,7 +16,8 @@ export interface TextAboutUsProps {
 }
 
 export interface Props {
-  imageBg?: ImageWidget
+  srcMobile?: ImageWidget,
+  srcDesktop?: ImageWidget
   title?: string;
   /** @format textarea */
   description?: string;
@@ -50,11 +52,12 @@ const DEFAULT_PROPS: Props = {
       alignment: "Center",
     },
   },
-  imageBg: ""
+  srcMobile: "",
+  srcDesktop: ""
 };
 
 export default function Newsletter(props: Props) {
-  const { title, description, form, layout, imageBg } = { ...DEFAULT_PROPS, ...props };
+  const { title, description, form, layout, srcMobile, srcDesktop } = { ...DEFAULT_PROPS, ...props };
   const bgColorLayout = layout?.content?.bg;
   const isReverse = bgColorLayout === "Reverse";
   const bordered = Boolean(layout?.content?.border);
@@ -104,9 +107,34 @@ export default function Newsletter(props: Props) {
         bordered
           ? isReverse ? "bg-secondary-content" : "bg-secondary"
           : bgLayout
-      } ${bordered ? "p-4 lg:p-16" : "p-0"} bg-no-repeat bg-cover bg-center`}
-      style={bgColorLayout === "Image" && imageBg && { backgroundImage: `url(${imageBg})` }}
+      } ${bordered ? "p-4 lg:p-16" : "p-0"} 
+      ${bgColorLayout === "Image" && "relative h-[360px]"} bg-no-repeat bg-cover bg-center`}
     >
+      {bgColorLayout === "Image" ? (
+        <Picture>
+          <Source
+            media="(max-width: 767px)"
+            src={srcMobile}
+            width={80}
+            height={80}
+          />
+          <Source
+            media="(min-width: 768px)"
+            src={srcDesktop}
+            width={240}
+            height={90}
+          />
+          <img
+            class="w-full absolute h-[360px] object-cover z-[-1]"
+            sizes="(max-width: 640px) 100vw, 30vw"
+            src={srcMobile}
+            alt={title ?? "Newsletter"}
+            decoding="async"
+            loading="lazy"
+          />
+        </Picture>
+      ) : ''}
+      
       {(!layout?.content?.alignment ||
         layout?.content?.alignment === "Center") && (
         <div
