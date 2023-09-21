@@ -93,8 +93,8 @@ const RADIUS_DESKTOP = {
 
 export default function BannnerGrid({
   title,
-  itemsPerLine,
-  borderRadius,
+  itemsPerLine = { mobile: 2, desktop: 2 },
+  borderRadius = { mobile: "sm", desktop: "sm" },
   banners = [],
   layout: { alignmentText },
 }: Props) {
@@ -119,8 +119,8 @@ export default function BannnerGrid({
           <a
             href={href}
             class={`overflow-hidden ${
-              RADIUS_MOBILE[borderRadius.mobile ?? "none"]
-            } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
+              RADIUS_MOBILE[borderRadius?.mobile ?? "none"]
+            } ${RADIUS_DESKTOP[borderRadius?.desktop ?? "none"]} `}
           >
             { alignmentText === "Top" && (
               <div class="flex flex-col justify-center items-center">
@@ -163,7 +163,7 @@ export default function BannnerGrid({
             { alignmentText === "Bottom" && (
               <div class="flex flex-col justify-center items-center">
                 {text && (
-                  <div class="relative py-4 mb-8 text-[#181812] text-base font-medium hover:underline">
+                  <div class="relative py-12 mb-4 text-[#181812] text-base font-semibold hover:underline">
                   <p>
                     {text}
                   </p>

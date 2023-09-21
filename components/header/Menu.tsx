@@ -1,7 +1,16 @@
-import Icon from "$store/components/ui/Icon.tsx";
+import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import type { INavItem } from "./NavItem.tsx";
+import type { ImageWidget } from "apps/admin/widgets.ts";
+
+export interface MenuTopProps {
+  label?: AvailableIcons;
+  text: string;
+  href: string;
+}
 
 export interface Props {
+  menuTop?: MenuTopProps[]
+  logo?: { src: ImageWidget; alt: string };
   items: INavItem[];
 }
 

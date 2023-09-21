@@ -14,6 +14,7 @@ const Searchbar = lazy(() => import("$store/components/search/Searchbar.tsx"));
 
 export interface Props {
   menu: MenuProps;
+
   searchbar?: SearchbarProps;
   /**
    * @ignore_gen true
@@ -23,22 +24,32 @@ export interface Props {
 }
 
 const Aside = (
-  { title, onClose, children }: {
+  { title, onClose, children, logo }: {
     title: string;
     onClose?: () => void;
     children: ComponentChildren;
+    logo?: { src: LiveImage; alt: string }
   },
 ) => (
-  <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100vw]">
-    <div class="flex justify-between items-center">
-      <h1 class="px-4 py-3">
-        <span class="font-medium text-2xl">{title}</span>
-      </h1>
+  <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[70%]">
+    <div class="flex justify-center items-center relative">
       {onClose && (
-        <Button class="btn btn-ghost" onClick={onClose}>
+        <Button class="absolute left-2 top-2" onClick={onClose}>
           <Icon id="XMark" size={24} strokeWidth={2} />
         </Button>
       )}
+      <h1 class="px-4 py-3">
+        {title === "Menu"
+          ? (
+            <Image
+              src={logo?.src ?? ""}
+              alt={logo?.alt ?? ""}
+              width={50}
+              height={41}
+            />
+          )
+          : <span class="font-medium text-2xl">{title}</span>}
+      </h1>
     </div>
     <Suspense
       fallback={
@@ -64,6 +75,7 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
       }}
       aside={
         <Aside
+          logo={menu?.logo}
           onClose={() => {
             displayMenu.value = false;
             displaySearchDrawer.value = false;
