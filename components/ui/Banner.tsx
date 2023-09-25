@@ -107,8 +107,8 @@ export default function Banner({
               <Source
                 media="(max-width: 767px)"
                 src={srcMobile}
-                width={160}
-                height={70}
+                width={200}
+                height={125}
               />
               <Source
                 media="(min-width: 768px)"
