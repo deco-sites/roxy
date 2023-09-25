@@ -107,14 +107,14 @@ export default function Banner({
               <Source
                 media="(max-width: 767px)"
                 src={srcMobile}
-                width={96}
-                height={42}
+                width={120}
+                height={52.5}
               />
               <Source
                 media="(min-width: 768px)"
                 src={srcDesktop ? srcDesktop : srcMobile}
-                width={352}
-                height={154}
+                width={384}
+                height={168}
               />
               <img
                 class="w-full"
