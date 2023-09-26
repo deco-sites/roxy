@@ -1,3 +1,4 @@
+import Button from "$store/components/ui/Button.tsx";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Header from "$store/components/ui/SectionHeader.tsx";
@@ -15,9 +16,16 @@ export interface Banner {
   /**
    * @description When you click you go to
    */
-  href: string;
-  text?: string;
-  cta?: string;
+  action?: {
+    /** @description when user clicks on the image, go to this link */
+    href: string;
+    /** @description Image text title */
+    title: string;
+    /** @description Image text subtitle */
+    subTitle: string;
+    /** @description Button label */
+    label: string;
+  };
 }
 
 export type BorderRadius =
@@ -83,22 +91,12 @@ export default function Banner({
         fontSize={"Large"}
         alignment={"center"}
       />
-      {/* {title &&
-        (
-          <div class="py-6 md:py-0 md:pb-[40px] flex items-center mt-6">
-            <h2 class="text-lg leading-5 font-semibold uppercase">
-              {title}
-            </h2>
-
-            <div class="bg-[#e5e5ea] h-[1px] w-full ml-4"></div>
-          </div>
-        )} */}
       <div
         class={`grid gap-4 md:gap-6 grid-cols-1`}
       >
-        {banners.map(({ href, srcMobile, srcDesktop, alt, text, cta }) => (
+        {banners.map(({ srcMobile, srcDesktop, alt, action }) => (
           <a
-            href={href}
+            href={action?.href ?? "#"}
             class={`overflow-hidden relative ${
               RADIUS_MOBILE[borderRadius.mobile ?? "none"]
             } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
@@ -126,18 +124,17 @@ export default function Banner({
               />
             </Picture>
             <div class="absolute top-0 left-0 w-full h-full hover:bg-gray-600 hover:opacity-30" />
-            {text || cta
-              ? (
-                <div
-                  class={`pt-4 text-black flex flex-col p-2 gap-2 tracking-widest`}
-                >
-                  {text && <h2 class="text-3xl">{text}</h2>}
-                  {cta && (
-                    <p class="text-xl text-black tracking-widest">{cta}</p>
-                  )}
-                </div>
-              )
-              : ""}
+            {action && (
+              <div class="absolute h-min top-0 bottom-0 m-auto left-0 right-0 sm:right-auto sm:left-[12%] max-h-min max-w-[235px] flex flex-col gap-4 p-4 rounded">
+                <span class="text-6xl font-medium text-base-100">
+                  {action.title}
+                </span>
+                <span class="font-medium text-xl text-base-100">
+                  {action.subTitle}
+                </span>
+                <Button>{action.label}</Button>
+              </div>
+            )}
           </a>
         ))}
       </div>

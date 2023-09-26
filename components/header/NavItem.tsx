@@ -22,9 +22,10 @@ function NavItem({ item }: { item: INavItem }) {
       {children && children.length > 0 &&
         (
           <div
-            class="fixed hidden hover:flex group-hover:flex z-50 items-start justify-center gap-6 border-t border-b-2 border-base-200 w-screen h-full bg-[rgba(0,0,0,0.4)] text-[#333333]"
+            class="fixed hidden hover:flex group-hover:flex z-50 items-start justify-center gap-6 border-t border-b-2 border-base-200 w-screen text-[#333333]"
             style={{ top: "0px", left: "0px", marginTop: headerHeight }}
           >
+            <div class="fixed z-[-1] pointer-events-none bg-[rgba(0,0,0,0.4)] h-full w-screen" />
             <div class="bg-base-100 w-full shadow">
               {image?.src && (
                 <Image
